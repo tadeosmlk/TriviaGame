@@ -124,16 +124,16 @@ function startGame(){
     console.log(timerflag + ' timerflag')
     console.log('---------------------')
     console.log($(this).text())
-    $('#innerContainer').show()
-    $('#innerContainer').empty()
-    $('.timer').show()
-    $('#submit').show()
+    //$('#innerContainer').show()
+    //$('#innerContainer').empty()
+    //$('.timer').show()
+    //$('#submit').show()
     //$('.AllDonediv').empty()
 
     if ($(this).text() == 'Start')
     {
         console.log('heerrreee')
-        startTimer(5)
+        startTimer(15)
         console.log(timeInSeconds)
         console.log('Starting...........')
         k = generateQuestionNumber(4);
@@ -181,13 +181,15 @@ function startGame(){
         }
         $('button').text('Submit').attr('id', 'submit')
 
-
+        //debugger;
         }
 
         // $('#submit').on('click', submitAnswers)
         else if ($(this).text() == 'Submit')
         {
           console.log('subbbbmmmmiiiittteee')
+
+
           submitAnswers('button')
 
         }
@@ -198,13 +200,14 @@ function submitAnswers(flag){
   if (flag == 'button')
     {
       event.preventDefault();
-
+      console.log('i am in button')
       timerflag = 1;
       clearInterval();
       var slog = 'Greate, you Finished all questions on time. '
     }
   else
   {
+    console.log('i\'m  not in button')
     if(timerflag == 0)
     var slog = 'Time is up.'
   }
@@ -217,8 +220,11 @@ function submitAnswers(flag){
   for(var i = 0; i <10; i++)
   {
    quest = 'question'+i
+ //var selectedAnswers = $("input[name="+ "question1" + "]:checked").val()
+ console.log("input[name="+ quest + "]:checked")
+ var selectedAnswers = $("input[name="+ quest + "]:checked").val()
 
-  var selectedAnswers = $("input[name="+ quest + "]:checked").val()
+  console.log('SelectedAnsers'+selectedAnswers)
   if(!selectedAnswers)
   {
     unansweredQuestions++
